@@ -6,8 +6,17 @@ const link = caminhoArquivo[2];
 console.log(process.argv);
 
 fs.readFile(link, 'utf-8', (error, text) => {
-    verifyDuplicatedWords(text);
+    paragraphBreaks(text);
 });
+
+function paragraphBreaks(text) {
+    const paragraphs = text.toLowerCase().split('\n');
+
+    const count = paragraphs.map(paragraph => {
+        return verifyDuplicatedWords(paragraph);
+    });
+    console.log(count);
+}
 
 function verifyDuplicatedWords(text) {
     const wordsList = text.split(' ');
@@ -18,5 +27,5 @@ function verifyDuplicatedWords(text) {
         result[word] = (result[word] || 0) + 1;
     });
 
-    console.log(result);
+    return result;
 }
