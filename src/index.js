@@ -18,13 +18,20 @@ function paragraphBreaks(text) {
     console.log(count);
 }
 
+function clearWords(palavra) {
+  return palavra.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+}
+
 function verifyDuplicatedWords(text) {
     const wordsList = text.split(' ');
 
     const result = {};
 
     wordsList.forEach(word => {
-        result[word] = (result[word] || 0) + 1;
+        if (word.length >= 3) {
+            const clearWord = clearWords(word);
+            result[clearWord] = (result[clearWord] || 0) + 1;
+        }
     });
 
     return result;
