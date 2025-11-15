@@ -12,7 +12,9 @@ fs.readFile(link, 'utf-8', (error, text) => {
 function paragraphBreaks(text) {
     const paragraphs = text.toLowerCase().split('\n');
 
-    const count = paragraphs.map(paragraph => {
+    const count = paragraphs.flatMap((paragraph) => {
+        if (!paragraph) return [];
+
         return verifyDuplicatedWords(paragraph);
     });
     console.log(count);
