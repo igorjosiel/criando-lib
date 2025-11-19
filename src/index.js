@@ -1,16 +1,5 @@
-const fs = require('fs');
-
-const caminhoArquivo = process.argv;
-const link = caminhoArquivo[2];
-
-console.log(process.argv);
-
-fs.readFile(link, 'utf-8', (error, text) => {
-    paragraphBreaks(text);
-});
-
-function paragraphBreaks(text) {
-    const paragraphs = text.toLowerCase().split('\n');
+export function countWords(text) {
+    const paragraphs = extractParagraphs(text);
 
     const count = paragraphs.flatMap((paragraph) => {
         if (!paragraph) return [];
@@ -18,6 +7,10 @@ function paragraphBreaks(text) {
         return verifyDuplicatedWords(paragraph);
     });
     console.log(count);
+}
+
+function extractParagraphs(text) {
+    return text.toLowerCase().split('\n');
 }
 
 function clearWords(palavra) {
