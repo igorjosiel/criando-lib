@@ -6,7 +6,8 @@ export function countWords(text) {
 
         return verifyDuplicatedWords(paragraph);
     });
-    console.log(count);
+    
+    return count;
 }
 
 function extractParagraphs(text) {
